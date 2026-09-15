@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PassMerge — Fusionar contraseñas duplicadas de Bitwarden</title>
+<meta name="description" content="Herramienta gratuita en el navegador para fusionar entradas duplicadas de Bitwarden repartidas en varios dominios por país (zalando.ch, zalando.de, zalando.fr → un solo elemento Zalando). Nada sale nunca de tu navegador. También lee exportaciones de Chrome, Firefox, LastPass, Dashlane, NordPass y Proton Pass.">
+<link rel="canonical" href="https://brignolij.github.io/passmerge/es/">
+<link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/">
+<link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/">
+<link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/">
+<link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/">
+<link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/">
+<link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/">
+<link rel="stylesheet" href="../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PassMerge",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Cualquiera (funciona en el navegador)",
+  "description": "Herramienta gratuita que fusiona entradas de contraseñas de Bitwarden duplicadas en los dominios por país de un mismo servicio en un solo elemento, totalmente del lado del navegador.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "url": "https://brignolij.github.io/passmerge/es/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Por qué tengo varias entradas de Bitwarden para la misma cuenta?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El guardado automático de contraseñas suele crear una entrada de Bitwarden por cada dominio que visitas — la misma cuenta en zalando.ch, zalando.de y fr.zalando.ch termina como tres entradas separadas en lugar de una, aunque sea el mismo usuario y la misma contraseña. PassMerge detecta la marca común detrás de estos dominios y las fusiona en un solo elemento con todas las URL adjuntas." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Es seguro subir mi exportación de contraseñas a esta herramienta?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nada se sube a ningún sitio. La herramienta funciona completamente como JavaScript en tu propia pestaña del navegador — tu CSV se lee y procesa localmente, y los archivos finales se generan localmente. Sin servidor, sin solicitudes de red, sin rastreo." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué exportaciones de otros gestores de contraseñas son compatibles?",
+      "acceptedAnswer": { "@type": "Answer", "text": "La exportación CSV nativa de Bitwarden es compatible. La herramienta también detecta y lee automáticamente exportaciones de Chrome, Edge, Brave, Firefox, LastPass, Dashlane, Contraseñas de Apple, NordPass y Proton Pass — la salida siempre queda lista para importar en Bitwarden." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si las entradas duplicadas tienen contraseñas diferentes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nunca se descarta nada en silencio. Si una contraseña difiere entre los elementos a fusionar, se te pregunta cuál conservar — la otra variante también se escribe en las notas del elemento fusionado y se marca en el informe." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo vuelvo a importar el resultado en Bitwarden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Descarga cleaned.json e impórtalo: Bóveda web de Bitwarden → Ajustes → Importar/exportar datos → formato .json (Bitwarden). Prueba primero en una bóveda vacía si no estás seguro." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar">
+    <a href="/passmerge/">EN</a>
+    <a href="/passmerge/fr/">FR</a>
+    <a href="/passmerge/de/">DE</a>
+    <a href="/passmerge/it/">IT</a>
+    <a href="/passmerge/es/" class="active">ES</a>
+  </div>
+
+  <header>
+    <h1>🧹 PassMerge</h1>
+    <p class="sub">Fusiona las entradas de acceso de un mismo servicio repartidas en varios dominios por país (zalando.ch + zalando.de + fr.zalando.ch → un solo elemento <b>Zalando</b>). Todo ocurre en tu navegador — nada se envía nunca a ningún sitio.</p>
+  </header>
+
+  <section class="hero">
+    <p class="lead">Si al exportar tu bóveda de Bitwarden te encontraste <span class="example-chip">amazon.com</span>, <span class="example-chip">amazon.de</span> y <span class="example-chip">amazon.fr</span> como tres accesos separados con exactamente el mismo correo y la misma contraseña — esta herramienta es para ti. Detecta los accesos que pertenecen al mismo servicio en distintos dominios por país y propone fusionar los duplicados en un solo elemento limpio, directamente en tu navegador.</p>
+
+    <h2>¿Por qué aparecen estos duplicados?</h2>
+    <p>Los navegadores y gestores de contraseñas suelen guardar una entrada por cada dominio realmente visitado. Como muchos sitios internacionales usan un dominio distinto por país (<span class="example-chip">.ch</span>, <span class="example-chip">.de</span>, <span class="example-chip">.fr</span>, <span class="example-chip">.co.uk</span>…) para lo que en realidad es la misma cuenta, tu bóveda se va llenando de casi-duplicados. PassMerge quita el sufijo de país y el subdominio para encontrar la marca común — <code>fr.zalando.ch</code> y <code>accounts.zalando.com</code> se convierten ambos en <code>zalando</code> — y propone fusionar todo lo que comparte marca y usuario en un solo elemento con todas las URL adjuntas.</p>
+
+    <h2>Cómo funciona</h2>
+    <ul>
+      <li>Exporta tu bóveda en CSV (o usa una exportación de Chrome, Firefox, LastPass, Dashlane, Contraseñas de Apple, NordPass o Proton Pass — el formato se detecta automáticamente).</li>
+      <li>La herramienta agrupa los elementos por marca + usuario y te muestra, un grupo a la vez, exactamente qué propone fusionar.</li>
+      <li>Ningún conflicto real (contraseña, carpeta o usuario diferentes) se resuelve nunca en silencio — tú eliges, o eliminas solo el elemento del que estás seguro con su propio icono de papelera.</li>
+      <li>Descarga un <code>cleaned.json</code> listo para importar, además de un informe completo en texto de cada decisión tomada.</li>
+    </ul>
+
+    <h2>Gestores de contraseñas compatibles</h2>
+    <p>El formato del CSV se detecta automáticamente — solo exporta y arrastra el archivo, sin necesidad de indicar de dónde viene:</p>
+    <ul>
+      <li><b>Bitwarden</b> — formato nativo, compatibilidad completa (carpetas, favoritos, campos personalizados, TOTP)</li>
+      <li><b>Google Chrome, Microsoft Edge, Brave</b> y otros navegadores basados en Chromium</li>
+      <li><b>Mozilla Firefox</b></li>
+      <li><b>LastPass</b></li>
+      <li><b>Dashlane</b></li>
+      <li><b>Contraseñas de Apple</b> (llavero de iCloud / Safari)</li>
+      <li><b>NordPass</b></li>
+      <li><b>Proton Pass</b></li>
+      <li>Cualquier otra exportación CSV con columnas de URL, usuario y contraseña — reconocida automáticamente por el nombre de las columnas.</li>
+    </ul>
+    <p>Sea cual sea el origen, el archivo descargado siempre es un <code>cleaned.json</code> / <code>cleaned.csv</code> listo para Bitwarden.</p>
+  </section>
+
+  <section id="step-upload" class="card">
+    <h2>1. Importa tu exportación CSV</h2>
+    <div id="dropzone" class="dropzone">
+      <p>Arrastra aquí tu archivo CSV, o</p>
+      <label class="btn" for="fileInput">Elegir un archivo…</label>
+      <input type="file" id="fileInput" accept=".csv,text/csv" hidden>
+      <p id="fileName" class="filename"></p>
+    </div>
+    <div class="options">
+      <label><input type="checkbox" id="optIgnoreUsername"> Ignorar el nombre de usuario al agrupar <span style="color:var(--muted)">(más arriesgado: puede fusionar cuentas distintas del mismo dominio)</span></label>
+    </div>
+    <button id="btnAnalyze" class="btn primary" disabled>Analizar</button>
+    <p class="privacy">🔒 Este archivo contiene tus contraseñas en texto plano. Nunca se sube a ningún sitio: todo el procesamiento ocurre localmente en JavaScript, en esta pestaña del navegador. Cierra la página y elimina el CSV original al terminar.</p>
+  </section>
+
+  <section id="step-review" class="card" hidden>
+    <h2>2. Revisar las fusiones, una por una</h2>
+    <div id="summary"></div>
+    <div id="wizard"></div>
+    <div id="autoList" class="autolist"></div>
+  </section>
+
+  <section id="step-download" class="card" hidden>
+    <h2>3. Descargar</h2>
+    <p id="dlStatus"></p>
+    <div class="downloads">
+      <a id="dlJson" class="btn primary" download="cleaned.json">⬇️ cleaned.json <span style="opacity:.85">(para importar en Bitwarden)</span></a>
+      <a id="dlCsv" class="btn" download="cleaned.csv">⬇️ cleaned.csv</a>
+      <a id="dlReport" class="btn" download="report.txt">⬇️ report.txt</a>
+    </div>
+    <p class="privacy">El archivo se actualiza automáticamente en cada paso de la revisión anterior — puedes descargarlo en cualquier momento, incluso antes de terminar (lo que aún no se ha revisado mantiene su elección predeterminada segura). Recomendado: importa <code>cleaned.json</code> (Bóveda web de Bitwarden → Ajustes → Importar/exportar datos → formato <b>.json (Bitwarden)</b>). El CSV solo puede conservar una URL por elemento fusionado; las demás se listan en sus notas.</p>
+    <button id="btnReset" class="btn">🔄 Empezar de nuevo</button>
+  </section>
+
+  <section class="hero faq">
+    <h2>Preguntas frecuentes</h2>
+    <details>
+      <summary>¿Por qué tengo varias entradas de Bitwarden para la misma cuenta?</summary>
+      <p>El guardado automático suele crear una entrada por dominio visitado — la misma cuenta en <code>zalando.ch</code>, <code>zalando.de</code> y <code>fr.zalando.ch</code> termina en tres entradas separadas. PassMerge detecta la marca común y las fusiona en un solo elemento con todas las URL adjuntas.</p>
+    </details>
+    <details>
+      <summary>¿Es seguro subir mi exportación a esta herramienta?</summary>
+      <p>Nada se sube nunca. La herramienta funciona totalmente como JavaScript en tu pestaña — CSV leído y procesado localmente, archivos generados localmente. Sin servidor, sin solicitudes de red, sin rastreo.</p>
+    </details>
+    <details>
+      <summary>¿Qué gestores de contraseñas son compatibles?</summary>
+      <p>La exportación CSV nativa de Bitwarden. La herramienta también detecta Chrome, Edge, Brave, Firefox, LastPass, Dashlane, Contraseñas de Apple, NordPass y Proton Pass — la salida siempre queda lista para Bitwarden.</p>
+    </details>
+    <details>
+      <summary>¿Qué pasa si los duplicados tienen contraseñas diferentes?</summary>
+      <p>Nunca se descarta nada en silencio. Se te pregunta cuál conservar — la otra variante también queda anotada y marcada en el informe.</p>
+    </details>
+    <details>
+      <summary>¿Cómo vuelvo a importar el resultado en Bitwarden?</summary>
+      <p>Descarga <code>cleaned.json</code>: Bóveda web de Bitwarden → Ajustes → Importar/exportar datos → formato <b>.json (Bitwarden)</b>. Prueba primero en una bóveda vacía si no estás seguro.</p>
+    </details>
+  </section>
+
+  <footer>
+    <a class="coffee-banner" href="https://ko-fi.com/jeffreybrignoli" target="_blank" rel="noopener">☕ Invítame a un café</a>
+    <p class="attribution">Esta herramienta fue "vibe-codeada" con IA — revisada y publicada por un desarrollador real. ¿Curiosidad por saber quién está detrás? <a href="https://www.linkedin.com/in/jeffrey-brignoli/" target="_blank" rel="noopener">Mira mi LinkedIn</a>.</p>
+  </footer>
+</div>
+
+<script src="../assets/i18n.js"></script>
+<script src="../assets/app.js"></script>
+</body>
+</html>

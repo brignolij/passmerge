@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PassMerge — Merge Duplicate Bitwarden Passwords Across Domains</title>
+<meta name="description" content="Free browser tool to merge duplicate Bitwarden logins spread across country domains (zalando.ch, zalando.de, zalando.fr → one Zalando entry). Nothing ever leaves your browser. Also reads Chrome, Firefox, LastPass, Dashlane, NordPass and Proton Pass exports.">
+<link rel="canonical" href="https://brignolij.github.io/passmerge/">
+<link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/">
+<link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/">
+<link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/">
+<link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/">
+<link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/">
+<link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "PassMerge",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "Any (runs in the browser)",
+  "description": "Free browser tool that merges duplicate Bitwarden password entries spread across country-code domains of the same service into one item, entirely client-side.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "url": "https://brignolij.github.io/passmerge/"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does Bitwarden have several entries for the same account?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Autofill and browser password-saving prompts often create one Bitwarden item per domain you visit — so the same account on zalando.ch, zalando.de and fr.zalando.ch ends up as three separate items instead of one, even though it's the same login and password. PassMerge detects the shared brand behind these domains and merges them back into one item with all the URLs attached." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it safe to upload my password export to this tool?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nothing is uploaded anywhere. The tool runs entirely as JavaScript in your own browser tab — your CSV file is read locally, processed locally, and the resulting files are generated locally. No server, no network request, no tracking. You can even disconnect from the internet after loading the page and it still works." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which password managers' exports does it support?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Bitwarden's own CSV export is supported natively. The tool also auto-detects and reads CSV exports from Chrome, Edge, Brave, Firefox, LastPass, Dashlane, Apple Passwords, NordPass and Proton Pass by matching common column names — the output is always a Bitwarden-ready file." }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the duplicate entries have different passwords?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nothing is ever discarded silently. If a password differs between entries being merged, you're asked which one to keep, right in the browser — the other variant is also written into the merged item's notes and flagged in the report, so you can double-check later." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get the merged data back into Bitwarden?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Download cleaned.json and import it from the Bitwarden web vault: Settings → Import/export data → Import data → format .json (Bitwarden). It's recommended to test the import in an empty or test vault first." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<div class="wrap">
+  <div class="langbar">
+    <a href="/passmerge/" class="active">EN</a>
+    <a href="/passmerge/fr/">FR</a>
+    <a href="/passmerge/de/">DE</a>
+    <a href="/passmerge/it/">IT</a>
+    <a href="/passmerge/es/">ES</a>
+  </div>
+
+  <header>
+    <h1>🧹 PassMerge</h1>
+    <p class="sub">Merge login items that belong to the same service across country domains (zalando.ch + zalando.de + fr.zalando.ch → one <b>Zalando</b> item). Everything runs in your browser — nothing is ever sent anywhere.</p>
+  </header>
+
+  <section class="hero">
+    <p class="lead">If you've ever exported your Bitwarden vault and found <span class="example-chip">amazon.com</span>, <span class="example-chip">amazon.de</span> and <span class="example-chip">amazon.fr</span> sitting there as three separate logins with the exact same email and password — this tool is for you. It detects logins that share the same underlying service across country-code domains and merges the duplicates back into one clean item, right in your browser.</p>
+
+    <h2>Why do these duplicates happen?</h2>
+    <p>Browsers and password managers usually save one entry per domain you actually visit. Since many international sites use a different domain per country (<span class="example-chip">.ch</span>, <span class="example-chip">.de</span>, <span class="example-chip">.fr</span>, <span class="example-chip">.co.uk</span>…) for what is really the same account, your vault slowly fills up with near-identical duplicates. PassMerge strips the country suffix and subdomain to find the shared brand — <code>fr.zalando.ch</code> and <code>accounts.zalando.com</code> both become <code>zalando</code> — and offers to merge everything that shares a brand and username into one item with every URL attached.</p>
+
+    <h2>How it works</h2>
+    <ul>
+      <li>Export your vault as CSV (or use an export from Chrome, Firefox, LastPass, Dashlane, Apple Passwords, NordPass or Proton Pass — the tool auto-detects the format).</li>
+      <li>The tool groups items by brand + username and shows you, one group at a time, exactly what it wants to merge.</li>
+      <li>Any real conflict (a different password, folder, or username) is never resolved silently — you pick, or remove just the one entry you're sure about with its own trash icon.</li>
+      <li>Download a ready-to-import <code>cleaned.json</code>, plus a full text report of every decision made.</li>
+    </ul>
+
+    <h2>Supported password managers</h2>
+    <p>The CSV format is auto-detected — just export and drop the file in, no need to tell the tool what it is:</p>
+    <ul>
+      <li><b>Bitwarden</b> — native format, full support (folders, favorites, custom fields, TOTP)</li>
+      <li><b>Google Chrome, Microsoft Edge, Brave</b> and other Chromium-based browsers</li>
+      <li><b>Mozilla Firefox</b></li>
+      <li><b>LastPass</b></li>
+      <li><b>Dashlane</b></li>
+      <li><b>Apple Passwords</b> (iCloud Keychain / Safari)</li>
+      <li><b>NordPass</b></li>
+      <li><b>Proton Pass</b></li>
+      <li>Any other CSV export with URL, username and password columns — matched automatically by column name.</li>
+    </ul>
+    <p>Whatever the source, the file you download back is always a Bitwarden-ready <code>cleaned.json</code> / <code>cleaned.csv</code>.</p>
+  </section>
+
+  <section id="step-upload" class="card">
+    <h2>1. Import your password export (CSV)</h2>
+    <div id="dropzone" class="dropzone">
+      <p>Drop your CSV file here, or</p>
+      <label class="btn" for="fileInput">Choose a file…</label>
+      <input type="file" id="fileInput" accept=".csv,text/csv" hidden>
+      <p id="fileName" class="filename"></p>
+    </div>
+    <div class="options">
+      <label><input type="checkbox" id="optIgnoreUsername"> Ignore username when grouping <span style="color:var(--muted)">(riskier: can merge different accounts on the same domain)</span></label>
+    </div>
+    <button id="btnAnalyze" class="btn primary" disabled>Analyze</button>
+    <p class="privacy">🔒 This file contains your passwords in plain text. It is never uploaded — everything runs locally in JavaScript, in this browser tab. Close the page and delete the original CSV once you're done.</p>
+  </section>
+
+  <section id="step-review" class="card" hidden>
+    <h2>2. Review the merges, one by one</h2>
+    <div id="summary"></div>
+    <div id="wizard"></div>
+    <div id="autoList" class="autolist"></div>
+  </section>
+
+  <section id="step-download" class="card" hidden>
+    <h2>3. Download</h2>
+    <p id="dlStatus"></p>
+    <div class="downloads">
+      <a id="dlJson" class="btn primary" download="cleaned.json">⬇️ cleaned.json <span style="opacity:.85">(import this into Bitwarden)</span></a>
+      <a id="dlCsv" class="btn" download="cleaned.csv">⬇️ cleaned.csv</a>
+      <a id="dlReport" class="btn" download="report.txt">⬇️ report.txt</a>
+    </div>
+    <p class="privacy">The file updates automatically at every step of the review above — you can download at any point, even before finishing (anything not reviewed yet just keeps its safe default). Recommended: import <code>cleaned.json</code> (Bitwarden web vault → Settings → Import/export data → format <b>.json (Bitwarden)</b>). CSV can only keep one URL per merged item; the rest are listed in its notes.</p>
+    <button id="btnReset" class="btn">🔄 Start over</button>
+  </section>
+
+  <section class="hero faq">
+    <h2>Frequently asked questions</h2>
+    <details>
+      <summary>Why does Bitwarden have several entries for the same account?</summary>
+      <p>Autofill and browser password-saving prompts often create one Bitwarden item per domain you visit — so the same account on <code>zalando.ch</code>, <code>zalando.de</code> and <code>fr.zalando.ch</code> ends up as three separate items instead of one. PassMerge detects the shared brand behind these domains and merges them back into one item with all the URLs attached.</p>
+    </details>
+    <details>
+      <summary>Is it safe to upload my password export to this tool?</summary>
+      <p>Nothing is uploaded anywhere. The tool runs entirely as JavaScript in your own browser tab — your CSV is read and processed locally, and the output files are generated locally. No server, no network request, no tracking.</p>
+    </details>
+    <details>
+      <summary>Which password managers' exports does it support?</summary>
+      <p>Bitwarden's own CSV export natively. The tool also auto-detects and reads exports from Chrome, Edge, Brave, Firefox, LastPass, Dashlane, Apple Passwords, NordPass and Proton Pass — the output is always a Bitwarden-ready file.</p>
+    </details>
+    <details>
+      <summary>What happens if the duplicate entries have different passwords?</summary>
+      <p>Nothing is ever discarded silently. If a password differs, you're asked which one to keep — the other variant is also written into the merged item's notes and flagged in the report.</p>
+    </details>
+    <details>
+      <summary>How do I get the merged data back into Bitwarden?</summary>
+      <p>Download <code>cleaned.json</code> and import it: Bitwarden web vault → Settings → Import/export data → Import data → format <b>.json (Bitwarden)</b>. Test in an empty vault first if you're not sure.</p>
+    </details>
+  </section>
+
+  <footer>
+    <a class="coffee-banner" href="https://ko-fi.com/jeffreybrignoli" target="_blank" rel="noopener">☕ Buy me a coffee</a>
+    <p class="attribution">This tool was vibe-coded with AI — reviewed and shipped by a real developer. Curious who's behind it? <a href="https://www.linkedin.com/in/jeffrey-brignoli/" target="_blank" rel="noopener">Check my LinkedIn</a>.</p>
+  </footer>
+</div>
+
+<script src="assets/i18n.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

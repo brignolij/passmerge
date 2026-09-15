@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://brignolij.github.io/passmerge/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/"/>
+  </url>
+  <url>
+    <loc>https://brignolij.github.io/passmerge/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/"/>
+  </url>
+  <url>
+    <loc>https://brignolij.github.io/passmerge/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/"/>
+  </url>
+  <url>
+    <loc>https://brignolij.github.io/passmerge/it/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/"/>
+  </url>
+  <url>
+    <loc>https://brignolij.github.io/passmerge/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://brignolij.github.io/passmerge/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://brignolij.github.io/passmerge/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://brignolij.github.io/passmerge/de/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://brignolij.github.io/passmerge/it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://brignolij.github.io/passmerge/es/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://brignolij.github.io/passmerge/"/>
+  </url>
+</urlset>

@@ -1,0 +1,8 @@
+# Never commit real password exports — this tool exists to process them,
+# not to store them. Only sample_input.csv (fake demo data) should be
+# tracked in this repo.
+*.csv
+!sample_input.csv
+bitwarden_export*.csv
+output/
+.DS_Store

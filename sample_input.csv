@@ -1,0 +1,8 @@
+folder,favorite,type,name,notes,fields,reprompt,archivedDate,login_uri,login_username,login_password,login_totp
+,,login,10.0.1.1 (bdresort),,,0,,http://10.0.1.1/,bdresort,456255,
+,,login,127.0.0.1 (admin),,,0,,http://127.0.0.1:8000/,admin,1234,
+,,login,accounts.zalando.com (jeffrey.brignoli@gmail.com),,,0,,https://accounts.zalando.com/,jeffrey.brignoli@gmail.com,ggggttt2,
+,,login,fr.zalando.ch (jeffrey.brignoli@gmail.com),,,0,,https://fr.zalando.ch/,jeffrey.brignoli@gmail.com,ggggttt2,
+,,login,zalando.de (jeffrey.brignoli@gmail.com),,,0,,https://www.zalando.de/,jeffrey.brignoli@gmail.com,ggggttt2,
+,,login,example.co.uk (jane),,,0,,https://www.example.co.uk/,jane,secret1,
+,,login,example.com.au (jane),,,0,,https://example.com.au/login,jane,secret2,
