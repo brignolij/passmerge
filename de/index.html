@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="de">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42LEBZWF1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-42LEBZWF1H');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PassMerge — Doppelte Bitwarden-Passwörter zusammenführen</title>
@@ -38,7 +47,7 @@
     {
       "@type": "Question",
       "name": "Ist es sicher, meinen Passwort-Export in dieses Tool zu laden?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Es wird nichts hochgeladen. Das Tool läuft vollständig als JavaScript in Ihrem eigenen Browser-Tab — Ihre CSV wird lokal gelesen und verarbeitet, die Ausgabedateien werden lokal erzeugt. Kein Server, keine Netzwerkanfrage, kein Tracking." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Ihre CSV-Datei selbst wird nie irgendwohin hochgeladen \u2014 sie wird vollst\u00e4ndig als JavaScript in Ihrem eigenen Browser-Tab gelesen und verarbeitet, die Ausgabedateien werden lokal erzeugt. Die Seite verwendet datenschutzfreundliches Google Analytics, um Besuche zu z\u00e4hlen; das sieht nur, welche Seiten Sie ansehen, niemals Ihre Datei oder deren Inhalt." }
     },
     {
       "@type": "Question",
@@ -71,7 +80,7 @@
 
   <header>
     <h1>🧹 PassMerge</h1>
-    <p class="sub">Führt Login-Einträge desselben Dienstes über mehrere Länderdomains zusammen (zalando.ch + zalando.de + fr.zalando.ch → ein einziger <b>Zalando</b>-Eintrag). Alles läuft in Ihrem Browser — nichts wird jemals irgendwohin gesendet.</p>
+    <p class="sub">Führt Login-Einträge desselben Dienstes über mehrere Länderdomains zusammen (zalando.ch + zalando.de + fr.zalando.ch → ein einziger <b>Zalando</b>-Eintrag). Ihre Passwörter verlassen niemals Ihren Browser.</p>
   </header>
 
   <section class="hero">
@@ -146,7 +155,7 @@
     </details>
     <details>
       <summary>Ist es sicher, meinen Export in dieses Tool zu laden?</summary>
-      <p>Es wird nichts hochgeladen. Das Tool läuft vollständig als JavaScript in Ihrem Tab — CSV lokal gelesen und verarbeitet, Dateien lokal erzeugt. Kein Server, keine Netzwerkanfrage, kein Tracking.</p>
+      <p>Ihre CSV-Datei selbst wird nie irgendwohin hochgeladen — sie wird vollständig als JavaScript in Ihrem Tab gelesen und verarbeitet, die Dateien werden lokal erzeugt. Die Seite verwendet datenschutzfreundliches Google Analytics, um Besuche zu zählen; das sieht nur, welche Seiten Sie ansehen, niemals Ihre Datei oder deren Inhalt.</p>
     </details>
     <details>
       <summary>Welche Passwort-Manager werden unterstützt?</summary>

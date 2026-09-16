@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42LEBZWF1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-42LEBZWF1H');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PassMerge — Merge Duplicate Bitwarden Passwords Across Domains</title>
@@ -38,7 +47,7 @@
     {
       "@type": "Question",
       "name": "Is it safe to upload my password export to this tool?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nothing is uploaded anywhere. The tool runs entirely as JavaScript in your own browser tab — your CSV file is read locally, processed locally, and the resulting files are generated locally. No server, no network request, no tracking. You can even disconnect from the internet after loading the page and it still works." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Your CSV file itself is never uploaded anywhere \u2014 it is read and processed entirely as JavaScript in your own browser tab, and the output files are generated locally. The site does use privacy-conscious Google Analytics to count visits and see which pages are popular; that only sees which pages you view, never your file or its contents." }
     },
     {
       "@type": "Question",
@@ -71,7 +80,7 @@
 
   <header>
     <h1>🧹 PassMerge</h1>
-    <p class="sub">Merge login items that belong to the same service across country domains (zalando.ch + zalando.de + fr.zalando.ch → one <b>Zalando</b> item). Everything runs in your browser — nothing is ever sent anywhere.</p>
+    <p class="sub">Merge login items that belong to the same service across country domains (zalando.ch + zalando.de + fr.zalando.ch → one <b>Zalando</b> item). Your password data never leaves your browser.</p>
   </header>
 
   <section class="hero">
@@ -146,7 +155,7 @@
     </details>
     <details>
       <summary>Is it safe to upload my password export to this tool?</summary>
-      <p>Nothing is uploaded anywhere. The tool runs entirely as JavaScript in your own browser tab — your CSV is read and processed locally, and the output files are generated locally. No server, no network request, no tracking.</p>
+      <p>Your CSV file itself is never uploaded anywhere — it's read and processed entirely as JavaScript in your own browser tab, and the output files are generated locally. The site does use privacy-conscious Google Analytics to count visits; that only sees which pages you view, never your file or its contents.</p>
     </details>
     <details>
       <summary>Which password managers' exports does it support?</summary>

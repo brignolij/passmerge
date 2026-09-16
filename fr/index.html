@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="fr">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42LEBZWF1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-42LEBZWF1H');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PassMerge — Fusionner les mots de passe Bitwarden en double</title>
@@ -38,7 +47,7 @@
     {
       "@type": "Question",
       "name": "Est-ce sûr d'importer mon export de mots de passe dans cet outil ?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Rien n'est jamais envoyé où que ce soit. L'outil fonctionne entièrement en JavaScript dans votre propre onglet de navigateur — votre CSV est lu et traité localement, et les fichiers de sortie sont générés localement. Aucun serveur, aucune requête réseau, aucun suivi." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Votre fichier CSV lui-m\u00eame n'est jamais envoy\u00e9 nulle part \u2014 il est lu et trait\u00e9 enti\u00e8rement en JavaScript dans votre propre onglet de navigateur, et les fichiers de sortie sont g\u00e9n\u00e9r\u00e9s localement. Le site utilise Google Analytics de mani\u00e8re respectueuse de la vie priv\u00e9e pour compter les visites ; cela ne voit que les pages consult\u00e9es, jamais votre fichier ni son contenu." }
     },
     {
       "@type": "Question",
@@ -71,7 +80,7 @@
 
   <header>
     <h1>🧹 PassMerge</h1>
-    <p class="sub">Fusionne les identifiants d'un même service répartis sur plusieurs domaines (zalando.ch + zalando.de + fr.zalando.ch → un seul élément <b>Zalando</b>). Tout se passe dans votre navigateur — rien n'est jamais envoyé où que ce soit.</p>
+    <p class="sub">Fusionne les identifiants d'un même service répartis sur plusieurs domaines (zalando.ch + zalando.de + fr.zalando.ch → un seul élément <b>Zalando</b>). Vos mots de passe ne quittent jamais votre navigateur.</p>
   </header>
 
   <section class="hero">
@@ -146,7 +155,7 @@
     </details>
     <details>
       <summary>Est-ce sûr d'importer mon export dans cet outil ?</summary>
-      <p>Rien n'est jamais envoyé où que ce soit. L'outil fonctionne entièrement en JavaScript dans votre onglet — CSV lu et traité localement, fichiers générés localement. Aucun serveur, aucune requête réseau, aucun suivi.</p>
+      <p>Votre fichier CSV lui-même n'est jamais envoyé nulle part — il est lu et traité entièrement en JavaScript dans votre onglet, et les fichiers de sortie sont générés localement. Le site utilise Google Analytics de manière respectueuse de la vie privée pour compter les visites ; cela ne voit que les pages consultées, jamais votre fichier ni son contenu.</p>
     </details>
     <details>
       <summary>Quels gestionnaires de mots de passe sont pris en charge ?</summary>

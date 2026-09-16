@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="it">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42LEBZWF1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-42LEBZWF1H');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PassMerge — Unire le password Bitwarden duplicate</title>
@@ -38,7 +47,7 @@
     {
       "@type": "Question",
       "name": "È sicuro caricare la mia esportazione di password in questo strumento?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nulla viene mai caricato da nessuna parte. Lo strumento funziona interamente come JavaScript nella tua scheda del browser — il CSV viene letto ed elaborato localmente, e i file finali vengono generati localmente. Nessun server, nessuna richiesta di rete, nessun tracciamento." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Il tuo file CSV in s\u00e9 non viene mai caricato da nessuna parte \u2014 viene letto ed elaborato interamente come JavaScript nella tua scheda del browser, e i file finali vengono generati localmente. Il sito usa Google Analytics in modo rispettoso della privacy per contare le visite; questo vede solo quali pagine visiti, mai il tuo file o il suo contenuto." }
     },
     {
       "@type": "Question",
@@ -71,7 +80,7 @@
 
   <header>
     <h1>🧹 PassMerge</h1>
-    <p class="sub">Unisce le voci di accesso dello stesso servizio distribuite su più domini nazionali (zalando.ch + zalando.de + fr.zalando.ch → un unico elemento <b>Zalando</b>). Tutto avviene nel tuo browser — nulla viene mai inviato altrove.</p>
+    <p class="sub">Unisce le voci di accesso dello stesso servizio distribuite su più domini nazionali (zalando.ch + zalando.de + fr.zalando.ch → un unico elemento <b>Zalando</b>). Le tue password non lasciano mai il tuo browser.</p>
   </header>
 
   <section class="hero">
@@ -146,7 +155,7 @@
     </details>
     <details>
       <summary>È sicuro caricare la mia esportazione in questo strumento?</summary>
-      <p>Nulla viene mai caricato. Lo strumento funziona interamente come JavaScript nella tua scheda — CSV letto ed elaborato localmente, file generati localmente. Nessun server, nessuna richiesta di rete, nessun tracciamento.</p>
+      <p>Il tuo file CSV in sé non viene mai caricato da nessuna parte — viene letto ed elaborato interamente come JavaScript nella tua scheda, e i file vengono generati localmente. Il sito usa Google Analytics in modo rispettoso della privacy per contare le visite; questo vede solo quali pagine visiti, mai il tuo file o il suo contenuto.</p>
     </details>
     <details>
       <summary>Quali gestori di password sono supportati?</summary>

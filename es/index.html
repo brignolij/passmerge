@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="es">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42LEBZWF1H"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-42LEBZWF1H');
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PassMerge — Fusionar contraseñas duplicadas de Bitwarden</title>
@@ -38,7 +47,7 @@
     {
       "@type": "Question",
       "name": "¿Es seguro subir mi exportación de contraseñas a esta herramienta?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Nada se sube a ningún sitio. La herramienta funciona completamente como JavaScript en tu propia pestaña del navegador — tu CSV se lee y procesa localmente, y los archivos finales se generan localmente. Sin servidor, sin solicitudes de red, sin rastreo." }
+      "acceptedAnswer": { "@type": "Answer", "text": "Tu archivo CSV en s\u00ed nunca se sube a ning\u00fan sitio \u2014 se lee y procesa por completo como JavaScript en tu propia pesta\u00f1a del navegador, y los archivos finales se generan localmente. El sitio usa Google Analytics de forma respetuosa con la privacidad para contar visitas; eso solo ve qu\u00e9 p\u00e1ginas visitas, nunca tu archivo ni su contenido." }
     },
     {
       "@type": "Question",
@@ -71,7 +80,7 @@
 
   <header>
     <h1>🧹 PassMerge</h1>
-    <p class="sub">Fusiona las entradas de acceso de un mismo servicio repartidas en varios dominios por país (zalando.ch + zalando.de + fr.zalando.ch → un solo elemento <b>Zalando</b>). Todo ocurre en tu navegador — nada se envía nunca a ningún sitio.</p>
+    <p class="sub">Fusiona las entradas de acceso de un mismo servicio repartidas en varios dominios por país (zalando.ch + zalando.de + fr.zalando.ch → un solo elemento <b>Zalando</b>). Tus contraseñas nunca salen de tu navegador.</p>
   </header>
 
   <section class="hero">
@@ -146,7 +155,7 @@
     </details>
     <details>
       <summary>¿Es seguro subir mi exportación a esta herramienta?</summary>
-      <p>Nada se sube nunca. La herramienta funciona totalmente como JavaScript en tu pestaña — CSV leído y procesado localmente, archivos generados localmente. Sin servidor, sin solicitudes de red, sin rastreo.</p>
+      <p>Tu archivo CSV en sí nunca se sube a ningún sitio — se lee y procesa por completo como JavaScript en tu pestaña, y los archivos se generan localmente. El sitio usa Google Analytics de forma respetuosa con la privacidad para contar visitas; eso solo ve qué páginas visitas, nunca tu archivo ni su contenido.</p>
     </details>
     <details>
       <summary>¿Qué gestores de contraseñas son compatibles?</summary>
