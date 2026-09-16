@@ -75,6 +75,11 @@ en: {
     manualChoice: (label, v) => `${label}: "${v}" chosen manually`,
   },
   fieldLabels: { login_username: "username", login_password: "password", folder: "folder", fields: "custom fields" },
+  langSuggestion: {
+    text: (name) => `This page is also available in ${name}.`,
+    view: (name) => `View in ${name}`,
+    dismiss: "No thanks",
+  },
 },
 
 fr: {
@@ -148,6 +153,11 @@ fr: {
     manualChoice: (label, v) => `${label} : "${v}" choisi manuellement`,
   },
   fieldLabels: { login_username: "nom d'utilisateur", login_password: "mot de passe", folder: "dossier", fields: "champs personnalisés" },
+  langSuggestion: {
+    text: (name) => `Cette page est aussi disponible en ${name}.`,
+    view: (name) => `Voir en ${name}`,
+    dismiss: "Non merci",
+  },
 },
 
 de: {
@@ -221,6 +231,11 @@ de: {
     manualChoice: (label, v) => `${label}: "${v}" manuell gewählt`,
   },
   fieldLabels: { login_username: "Benutzername", login_password: "Passwort", folder: "Ordner", fields: "benutzerdefinierte Felder" },
+  langSuggestion: {
+    text: (name) => `Diese Seite ist auch auf ${name} verfügbar.`,
+    view: (name) => `Auf ${name} ansehen`,
+    dismiss: "Nein danke",
+  },
 },
 
 it: {
@@ -294,6 +309,11 @@ it: {
     manualChoice: (label, v) => `${label}: "${v}" scelto manualmente`,
   },
   fieldLabels: { login_username: "nome utente", login_password: "password", folder: "cartella", fields: "campi personalizzati" },
+  langSuggestion: {
+    text: (name) => `Questa pagina è disponibile anche in ${name}.`,
+    view: (name) => `Vedi in ${name}`,
+    dismiss: "No grazie",
+  },
 },
 
 es: {
@@ -367,6 +387,11 @@ es: {
     manualChoice: (label, v) => `${label}: "${v}" elegido manualmente`,
   },
   fieldLabels: { login_username: "usuario", login_password: "contraseña", folder: "carpeta", fields: "campos personalizados" },
+  langSuggestion: {
+    text: (name) => `Esta página también está disponible en ${name}.`,
+    view: (name) => `Ver en ${name}`,
+    dismiss: "No, gracias",
+  },
 },
 
 };

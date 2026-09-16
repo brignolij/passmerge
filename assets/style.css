@@ -159,6 +159,16 @@ tr.row-removed .row-delete-btn { background: var(--ok-bg); }
 .nav-row { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
 .done-msg { text-align: center; padding: 20px; color: var(--ok); font-weight: 600; font-size: 15px; }
 
+.lang-banner {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  background: #eaf1ff; border: 1px solid var(--primary); border-radius: 10px;
+  padding: 10px 14px; margin-bottom: 16px; font-size: 13.5px;
+}
+.lang-banner span { flex: 1; min-width: 160px; color: var(--text); }
+.lang-banner-btn { background: var(--primary); color: #fff; border-radius: 6px; padding: 6px 12px; text-decoration: none; font-weight: 600; white-space: nowrap; }
+.lang-banner-btn:hover { background: var(--primary-hover); }
+.lang-banner-dismiss { background: none; border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; cursor: pointer; color: var(--muted); white-space: nowrap; }
+
 /* Footer: donation banner + attribution */
 footer { margin-top: 12px; text-align: center; }
 .coffee-banner {

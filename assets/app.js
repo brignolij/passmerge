@@ -838,4 +838,53 @@
     a.href = url;
     a.dataset.url = url;
   }
+
+  // ------------------------------------------------------------------
+  // Language suggestion banner
+  // ------------------------------------------------------------------
+  // Deliberately NOT an automatic redirect: Google advises against
+  // redirecting visitors based on inferred browser language, since it
+  // can stop Googlebot (which crawls as a generic/English client) from
+  // ever discovering the other language versions, and it overrides a
+  // user who deliberately wants the page in a different language than
+  // their browser's. A small, dismissible, remembered suggestion gets
+  // the UX benefit without either downside.
+
+  const NATIVE_NAMES = { en: "English", fr: "Français", de: "Deutsch", it: "Italiano", es: "Español" };
+  const LANG_PATHS = { en: "/passmerge/", fr: "/passmerge/fr/", de: "/passmerge/de/", it: "/passmerge/it/", es: "/passmerge/es/" };
+
+  function suggestLanguageIfNeeded() {
+    // Only the browser's TOP language preference counts — not the whole
+    // navigator.languages list. Multilingual locales (e.g. Swiss browsers
+    // often report ["fr","fr-CH","it-CH"]) would otherwise suggest a
+    // lower-priority language even when the top one already matches the
+    // page, which reads as a non-sequitur ("I'm reading in French, why
+    // is it suggesting Italian?").
+    const supported = Object.keys(NATIVE_NAMES);
+    const top = ((navigator.languages && navigator.languages[0]) || navigator.language || "en").slice(0, 2).toLowerCase();
+    const preferred = supported.includes(top) && top !== LANG ? top : null;
+    if (!preferred) return;
+
+    const dismissKey = `passmerge_lang_dismissed_${preferred}`;
+    let alreadyDismissed = false;
+    try { alreadyDismissed = !!localStorage.getItem(dismissKey); } catch (e) { /* private mode etc. */ }
+    if (alreadyDismissed) return;
+
+    const wrap = document.querySelector(".wrap");
+    if (!wrap) return;
+
+    const bar = document.createElement("div");
+    bar.className = "lang-banner";
+    bar.innerHTML =
+      `<span>${escapeHtml(T.langSuggestion.text(NATIVE_NAMES[preferred]))}</span>` +
+      `<a href="${LANG_PATHS[preferred]}" class="lang-banner-btn">${escapeHtml(T.langSuggestion.view(NATIVE_NAMES[preferred]))}</a>` +
+      `<button type="button" class="lang-banner-dismiss">${escapeHtml(T.langSuggestion.dismiss)}</button>`;
+    bar.querySelector(".lang-banner-dismiss").addEventListener("click", () => {
+      try { localStorage.setItem(dismissKey, "1"); } catch (e) { /* ignore */ }
+      bar.remove();
+    });
+    wrap.prepend(bar);
+  }
+
+  suggestLanguageIfNeeded();
 })();
