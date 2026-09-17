@@ -366,14 +366,19 @@
     const reprompt = rows.some(r => (r.reprompt || "0").trim() === "1") ? "1" : "0";
 
     const notesParts = [...new Set(rows.map(r => (r.notes || "").trim()).filter(Boolean))];
-    let notes = notesParts.join("\n---\n");
+    const notes = notesParts.join("\n---\n");
 
+    // A password conflict is recorded ONLY in report.txt (a local, one-off
+    // file you're told to delete when done) — never written into the vault
+    // item's own notes. Baking a rejected/old password into a *different*
+    // item's notes would duplicate that secret permanently inside the live,
+    // synced vault (searchable, exposed if the item is ever shared to an
+    // org, and re-exported in plaintext the next time this vault is
+    // exported to CSV) — worse than the one-time local file it replaced.
     const pwOptions = fieldValues(rows, "login_password", "exact");
-    if (pwOptions.length > 1) {
-      const others = pwOptions.map(o => o.value).filter(v => v !== password).join(", ");
-      const note = T.report.pwConflict(pwOptions.length, password, others);
-      notes = (notes ? notes + "\n---\n" : "") + `[passmerge] ${note}`;
-    }
+    const pwSilentNote = pwOptions.length > 1
+      ? T.report.pwConflict(pwOptions.length, password, pwOptions.map(o => o.value).filter(v => v !== password).join(", "))
+      : null;
 
     let displayName = capitalize((brand || groupNames[0] || "item").trim());
     if (username) displayName = `${displayName} (${username})`;
@@ -381,7 +386,7 @@
     return {
       folder, favorite, type: "login", name: displayName, notes, fields, reprompt,
       archivedDate: "", uris: allUris, username, password, totp, merged_from: groupNames,
-      silentNotes: usernameSilentNote ? [usernameSilentNote] : [],
+      silentNotes: [usernameSilentNote, pwSilentNote].filter(Boolean),
     };
   }
 

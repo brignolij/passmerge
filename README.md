@@ -62,8 +62,12 @@ static SEO copy in each `index.html` and the runtime UI strings in
    Import/export data → Import data → format `.json (Bitwarden)`. Test in
    an empty/test vault first if unsure.
 
-⚠️ Your export file contains your passwords in plain text. It is never
-uploaded anywhere — but keep it local and delete it once you're done.
+⚠️ Your export file — and `cleaned.csv`/`cleaned.json`/`report.txt` alike —
+contain your passwords in plain text. None of them are ever uploaded
+anywhere, but keep them local and delete all of them once you're done.
+`report.txt` in particular may list a rejected/alternate password when a
+merge had a conflict (see below); that plaintext is deliberately kept out
+of the vault item itself and only ever written to this local file.
 
 ## How matching works
 
